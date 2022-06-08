@@ -1,23 +1,27 @@
 package com.cep.servico;
 
 import com.cep.dto.PessoaDTO;
-import com.cep.mapper.Mapear;
+import com.cep.mapear.PessoaMapear;
 import com.cep.repositorio.PessoaRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class PessoaServico {
     @Autowired
     PessoaRepositorio pessoaRepositorio;
+    @Autowired
+    PessoaMapear pessoaMapear = PessoaMapear.INSTANCE;
 
-    public ArrayList<PessoaDTO> buscarId(){
-        Mapear mapear = Mapear.INSTANCE;
-        System.out.println(pessoaRepositorio.toString());
-        //ArrayList<PessoaDTO> pessoaDTOS = (ArrayList<PessoaDTO>) pessoaRepositorio.findAll().stream().map((pessoa) -> mapear.toDTO(pessoa));
-        //System.out.println(pessoaDTOS.toString());
-        return new ArrayList<PessoaDTO>();
+    public List<PessoaDTO> buscarId(){
+
+        return pessoaRepositorio.findAll()
+                .stream()
+                .map(pessoaMapear::toDTO)
+                .collect(Collectors.toList());
     }
 }

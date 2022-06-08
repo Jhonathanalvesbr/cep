@@ -4,17 +4,24 @@ import com.cep.dto.CepDTO;
 import com.cep.dto.PessoaDTO;
 import com.cep.entidade.Pessoa;
 import com.cep.funcao.ConverterJson;
+import com.cep.mapear.PessoaMapear;
+import com.cep.repositorio.PessoaRepositorio;
 import com.cep.servico.PessoaServico;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Component
 public class App implements CommandLineRunner {
     @Autowired
     ConverterJson converterJson;
     @Autowired
-    PessoaServico pessoaServico;
+    PessoaRepositorio pessoaRepositorio;
 
     @Override
     public void run(String... args) throws Exception {
@@ -30,9 +37,16 @@ public class App implements CommandLineRunner {
                 "      \"ddd\": \"11\",\n" +
                 "      \"siafi\": \"7107\"\n" +
                 "    }\n" ;
-        CepDTO cep = converterJson.converter(json);
-        PessoaDTO pessoaDTO = new PessoaDTO(0,"Jhonathan",cep);
+        List<CepDTO> cep = new ArrayList<>();
+        cep.add(converterJson.converter(json));
+
+        PessoaDTO pessoaDTO = new PessoaDTO(1L,"Jhonathan",cep);
         //System.out.println(pessoaDTO.toString());
+
+        Pessoa pessoa = PessoaMapear.INSTANCE.toModel(pessoaDTO);
+        //System.out.println(pessoa.getCep());
+
+        //pessoaRepositorio.save(pessoa);
 
     }
 }

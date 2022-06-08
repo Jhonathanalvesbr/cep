@@ -1,12 +1,15 @@
 package com.cep.entidade;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+import javax.persistence.*;
 
 @Entity
+@Data
 public class Cep {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id", nullable = false)
     private Long id;
     private String cep;

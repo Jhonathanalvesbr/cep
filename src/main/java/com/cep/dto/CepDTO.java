@@ -1,8 +1,10 @@
 package com.cep.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
+@AllArgsConstructor
 public class CepDTO {
     private String cep;
     private String logradouro;

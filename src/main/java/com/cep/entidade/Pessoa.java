@@ -1,16 +1,22 @@
 package com.cep.entidade;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import com.cep.dto.CepDTO;
+import lombok.Data;
+import org.hibernate.annotations.Cascade;
+
+import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Data
 public class Pessoa {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "id", nullable = false)
     private long id;
     private String nome;
-    @OneToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Cep> cep;
 
 }

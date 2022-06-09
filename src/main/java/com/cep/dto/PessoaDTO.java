@@ -1,13 +1,14 @@
 package com.cep.dto;
 
 import com.cep.entidade.Cep;
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
+@Getter
+@Builder
+@NoArgsConstructor
 @AllArgsConstructor
 public class PessoaDTO {
     private long id;

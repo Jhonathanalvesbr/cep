@@ -40,10 +40,10 @@ public class App implements CommandLineRunner {
         List<CepDTO> cep = new ArrayList<>();
         cep.add(converterJson.converter(json));
 
-        PessoaDTO pessoaDTO = new PessoaDTO(1L,"Jhonathan",cep);
+        //PessoaDTO pessoaDTO = new PessoaDTO(1L,"Jhonathan",cep);
         //System.out.println(pessoaDTO.toString());
 
-        Pessoa pessoa = PessoaMapear.INSTANCE.toModel(pessoaDTO);
+        //Pessoa pessoa = PessoaMapear.INSTANCE.toModel(pessoaDTO);
         //System.out.println(pessoa.getCep());
 
         //pessoaRepositorio.save(pessoa);

@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 
+import javax.transaction.Transactional;
 import java.util.List;
 
+@Transactional
 @RestController
 @RequestMapping("/api/v1/pessoa")
 public class Controlador {
@@ -19,11 +21,12 @@ public class Controlador {
     @GetMapping
     public List<PessoaDTO> getAllPessoa() {
 
-        return pessoaServico.buscarId();
+        return pessoaServico.buscarTodos();
     }
 
     @PostMapping
     public void setPessoa(@RequestBody List<PessoaDTO> pessoaDTO) {
-        System.out.println(pessoaDTO.toString());
+        pessoaServico.setPessoa(pessoaDTO);
     }
+
 }

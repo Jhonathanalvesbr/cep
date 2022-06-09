@@ -7,6 +7,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CepDTO {
+    private Long id;
     private String cep;
     private String logradouro;
     private String complemento;

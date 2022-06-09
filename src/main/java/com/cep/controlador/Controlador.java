@@ -24,9 +24,24 @@ public class Controlador {
         return pessoaServico.buscarTodos();
     }
 
+    @GetMapping("/{id}")
+    public PessoaDTO buscarId(@PathVariable long id) {
+        return pessoaServico.getPessoa(id);
+    }
+
     @PostMapping
     public void setPessoa(@RequestBody List<PessoaDTO> pessoaDTO) {
         pessoaServico.setPessoa(pessoaDTO);
+    }
+
+    @DeleteMapping("{id}")
+    public void deletarPessoa(@PathVariable long id){
+        pessoaServico.deletarPessoa(id);
+    }
+
+    @PutMapping("/{id}")
+    public void atualizarId(@PathVariable long id, @RequestBody PessoaDTO pessoaDTO){
+        pessoaServico.atualizarPessoa(id, pessoaDTO);
     }
 
 }

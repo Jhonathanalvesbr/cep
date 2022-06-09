@@ -7,10 +7,9 @@ import com.cep.repositorio.PessoaRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Service
 public class PessoaServico {
@@ -30,5 +29,17 @@ public class PessoaServico {
         for (PessoaDTO pessoa: pessoaDTO){
             pessoaRepositorio.save(pessoaMapear.toModel(pessoa));
         }
+    }
+
+    public PessoaDTO getPessoa(long id) {
+        return pessoaMapear.toDTO(pessoaRepositorio.findById(id).get());
+    }
+
+    public void atualizarPessoa(long id, PessoaDTO pessoaDTO) {
+        pessoaRepositorio.save(pessoaMapear.toModel(pessoaDTO));
+    }
+
+    public void deletarPessoa(long id) {
+        pessoaRepositorio.deleteById(id);
     }
 }
